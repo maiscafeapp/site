@@ -1,0 +1,223 @@
+/*#region Remove algumas lacunas de espaço e margem */
+.md-main__inner {
+  margin-top: 0;
+}
+
+md-typeset dd {
+  margin: 0em 0 1em 1.875em;
+}
+
+.md-typeset dd>* {
+  margin-top: 0;
+}
+
+.md-typeset p:empty {
+  display: none;
+}
+
+.md-typeset .admonition+*,
+.md-typeset details+* {
+  margin-top: 0;
+}
+
+/* .md-typeset blockquote, */
+.md-typeset dl,
+.md-typeset figure,
+.md-typeset ol,
+.md-typeset pre,
+.md-typeset ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/*#endregion*/
+
+
+/*#region Configura algumas opções do cabeçalho informativo */
+
+.md-banner {
+  background-color: #ff1744;
+}
+
+.md-banner a,
+.md-banner a:focus,
+.md-banner a:hover {
+  color: currentColor
+}
+
+.md-banner strong {
+  white-space: nowrap
+}
+
+.md-banner .twitter {
+  margin-left: .2em
+}
+/*#endregion*/
+
+/*#region O parágrafo normal deve ser totalmente justificado */
+.md-typeset p {
+  text-align: justify;
+}
+/*#endregion*/
+
+/*#region O rodapé parece menor alterando a cor do plano de fundo */
+.md-footer {
+  color: unset;
+  background-color: unset;
+}
+
+.md-footer-meta {
+  background-color: black;
+}
+
+/*#endregion*/
+
+
+/*#region Admonition */
+
+/*#region Aumenta o tamanho da fonte */
+.md-typeset .admonition,
+.md-typeset details {
+  font-size: 0.85em;
+}
+
+/*#endregion*/
+
+/*#region Preencha a cor de fundo para diferentes tipos de advertência */
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  background-color: rgba(68, 138, 255, 0.05);
+}
+
+.md-typeset .admonition.abstract,
+.md-typeset .admonition.summary,
+.md-typeset .admonition.tldr,
+.md-typeset details.abstract,
+.md-typeset details.summary,
+.md-typeset details.tldr {
+  background-color: rgba(0, 176, 255, 0.05);
+}
+
+.md-typeset .admonition.info,
+.md-typeset .admonition.todo,
+.md-typeset details.info,
+.md-typeset details.todo {
+  background-color: rgba(0, 184, 212, 0.05);
+}
+
+.md-typeset .admonition.hint,
+.md-typeset .admonition.important,
+.md-typeset .admonition.tip,
+.md-typeset details.hint,
+.md-typeset details.important,
+.md-typeset details.tip {
+  background-color: rgba(0, 191, 165, 0.05);
+}
+
+.md-typeset .admonition.check,
+.md-typeset .admonition.done,
+.md-typeset .admonition.success,
+.md-typeset details.check,
+.md-typeset details.done,
+.md-typeset details.success {
+  background-color: rgba(0, 200, 83, 0.05);
+}
+
+.md-typeset .admonition.faq,
+.md-typeset .admonition.help,
+.md-typeset .admonition.question,
+.md-typeset details.faq,
+.md-typeset details.help,
+.md-typeset details.question {
+  background-color: rgba(100, 221, 23, 0.05);
+}
+
+.md-typeset .admonition.attention,
+.md-typeset .admonition.caution,
+.md-typeset .admonition.warning,
+.md-typeset details.attention,
+.md-typeset details.caution,
+.md-typeset details.warning {
+  background-color: rgba(255, 145, 0, 0.05);
+}
+
+.md-typeset .admonition.fail,
+.md-typeset .admonition.failure,
+.md-typeset .admonition.missing,
+.md-typeset details.fail,
+.md-typeset details.failure,
+.md-typeset details.missing {
+  background-color: rgba(255, 82, 82, 0.05);
+}
+
+.md-typeset .admonition.danger,
+.md-typeset .admonition.error,
+.md-typeset details.danger,
+.md-typeset details.error {
+  background-color: rgba(255, 23, 68, 0.05);
+}
+
+.md-typeset .admonition.bug,
+.md-typeset details.bug {
+  background-color: rgba(245, 0, 87, 0.05);
+}
+
+.md-typeset .admonition.example,
+.md-typeset details.example {
+  background-color: rgba(124, 77, 255, 0.05);
+}
+
+.md-typeset .admonition.cite,
+.md-typeset .admonition.quote,
+.md-typeset details.cite,
+.md-typeset details.quote {
+  background-color: hsla(0, 0%, 62%, 0.05);
+}
+
+/*#endregion*/
+
+/*#endregion*/
+
+
+/*#region Quote é usado para fornecer dados adicionais, então mudei um pouco seu estilo para não confundi-lo com o texto principal. */
+.md-typeset blockquote {
+  color: unset;
+  border-left-width: 2px;
+  opacity: 0.7;
+}
+
+.md-typeset blockquote :first-child {
+  margin-top: 0.25em;
+}
+
+.md-typeset blockquote :last-child {
+  margin-bottom: 0.25em;
+}
+
+/*#endregion*/
+
+/*#region A tabela deve mostrar a borda da célula e usar toda a largura para tornar o conteúdo claro. */
+.md-typeset__scrollwrap {
+  margin: unset;
+}
+
+.md-typeset__table {
+  padding: 0;
+  display: block;
+}
+
+.md-typeset table:not([class]) {
+  font-size: 0.9em;
+  box-shadow: none;
+  display: table;
+  border-collapse: collapse;
+}
+
+.md-typeset table:not([class]) th,
+.md-typeset table:not([class]) td {
+  padding: 0.5em;
+  border: 1px solid #f0f0f0;
+  min-width: unset;
+}
+
+/*#endregion*/
