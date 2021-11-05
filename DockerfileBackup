@@ -1,0 +1,28 @@
+FROM ubuntu:latest
+
+ENV drawio-version=14.6.13
+ENV python-version=3.9
+ENV drawio-arch=amd64
+ENV drawio-sha256sum=ebcbf92f592998597aff4ff7dd04a1e9b99c11f9c7f70f59ee5020d2497cf910
+ENV drawio_deb="drawio-amd64-14.6.13.deb"
+ENV drawio_url="https://github.com/jgraph/drawio-desktop/releases/download/v14.6.13/drawio-amd64-14.6.13.deb"
+
+RUN apt-get update
+RUN apt-get install -y python
+RUN apt-get install -y curl
+RUN curl -L -o "$drawio_deb" "$drawio_url"
+#RUN sha256sum --check <<<"${drawio-sha256sum}  $drawio_deb"
+RUN apt-get install -y libasound2 xdg-utils xvfb
+RUN apt-get install ./"$drawio_deb"
+
+RUN pip install mkdocs-drawio-exporter mkdocs-minify-plugin mkdocs-git-revision-date-localized-plugin mkdocs-with-pdf
+RUN pip install git+https://ErliSoares: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@github.com/ErliSoares/mkdocs-material-insiders.git
+    
+RUN chmod +4755 /opt/drawio/chrome-sandbox
+
+RUN apt-get install -y xvfb
+
+RUN echo "#!/bin/sh\nxvfb-run /usr/bin/drawio \"\${@}\"" > /usr/local/bin/drawio && \
+    chmod +x /usr/local/bin/drawio
+
+ENV HOME /tmp

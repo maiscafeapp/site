@@ -1,0 +1,137 @@
+site_name: Mais Café
+site_description: "Controle da propriedade de café na palma da mão"
+site_url: https://maiscafe.com.br
+site_author: Erli Silva Soares
+site_email: erli-silva@hotmail.com
+site_keywords: Mais Café,Gestão da Cafeicultura,Custo de Produção,Café,Gerenciamento Propriedade,Talhão,Lavoura,Agronegócio,Rastreabilidade Café
+
+copyright: Copyright &copy; 2019 - 2021 Mais Café
+
+
+theme:
+  name: material
+  custom_dir: overrides
+  font: false
+  
+  include_search_page: false
+  search_index_only: false
+  
+  language: pt
+  features:
+    - content.code.annotate
+    - content.tabs.link
+    - header.autohide
+    - navigation.expand
+    # - navigation.indexes   ERRO: Não funciona com o awesome-pages, mas o plugin section-index funciona e gera a mesma funcionalidade
+    - navigation.instant
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+  palette:
+    - scheme: default
+      media: "(prefers-color-scheme: light)"
+      primary: green
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Mudar para o modo escuro
+    - scheme: slate
+      media: "(prefers-color-scheme: dark)"
+      primary: green
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Mudar para o modo leve
+  font:
+    text: Inter
+    code: Jetbrains Mono
+  favicon: assets/images/favicon.png
+  logo: assets/images/icon-white.png
+
+plugins:
+  #- htmlproofer:         TODO Utilizado para testar os links, mas demora muito
+  #    raise_error: True
+  - social
+  - drawio-exporter:
+      embed_format: '<object data="{img_src}" type="image/svg+xml" style="height: 100%;width: 100%;"></object>'
+      cache_dir: '../.cache'
+  - minify:
+      minify_html: true
+      minify_js: true
+      htmlmin_opts:
+          remove_comments: true
+          remove_empty_space: true
+     # js_files:
+          #- assets/javascripts/lite-yt-embed.js        # TODO Javascript fica incorreto depois de minificado
+  - awesome-pages
+  - section-index
+  - extra-sass
+
+extra:
+  generator: false
+  analytics:
+    provider: google
+    property: G-XTBD6BN743 # TODO Criar a chave oficial e retirar daqui e colocar um aviso do uso do cookies
+#  consent:
+#    title: Consentimento de cookie
+#    description: > 
+#      Este site usa cookies para garantir que você obtenha a melhor experiência. 
+#      Ao continuar a navegar no site está a consentir a utilização de cookies.
+#      <a href="">Saiba Mais</a>
+  social:
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/channel/UC6njXGyz6PT1UvAMJzvy7Hw
+      name: YouTube
+    - icon: fontawesome/brands/instagram
+      link: https://www.instagram.com/maiscafe.com.br
+      name: Instagram
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/MaisCafeApp
+      name: Twitter
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/maiscafeapp
+      name: Linkedin
+    - icon: fontawesome/brands/whatsapp
+      link: https://wa.me/33984525634
+      name: WhatsApp
+
+extra_javascript:
+  - assets/javascripts/lite-yt-embed.js
+
+markdown_extensions:
+  - admonition
+  - abbr
+  - pymdownx.snippets
+  - attr_list
+  - def_list
+  - footnotes
+  - meta
+  - md_in_html
+  - markdown_captions
+  - pymdownx.progressbar
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+nav:
+  - Início: index.md
+  - ...
+  - ... | sobre/**

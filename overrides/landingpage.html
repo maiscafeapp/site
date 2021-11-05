@@ -1,0 +1,209 @@
+{% extends "main.html" %}
+
+<!-- Render hero under tabs -->
+{% block tabs %}
+{{ super() }}
+
+<!-- Additional styles for landing page -->
+<style>
+  /* Application header should be static for the landing page */
+  .md-header {
+    position: initial;
+  }
+
+  /* Remove spacing, as we cannot hide it completely */
+  .md-main__inner {
+    margin: 0;
+  }
+
+  /* Hide main content for now */
+  .md-content {
+    display: none;
+  }
+
+  /* Hide table of contents */
+  @media screen and (min-width: 60em) {
+    .md-sidebar--secondary {
+      display: none;
+    }
+  }
+
+  /* Hide navigation */
+  @media screen and (min-width: 76.25em) {
+    .md-sidebar--primary {
+      display: none;
+    }
+  }
+
+  .mdx-container.wave {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 258'><path d='M0,64L40,96C80,128,160,192,240,192C320,192,400,128,480,138.7C560,149,640,235,720,240C800,245,880,171,960,154.7C1040,139,1120,181,1200,192C1280,203,1360,181,1400,170.7L1440,160L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z' style='fill: hsla(0, 0%, 100%, 1)'/></svg>") no-repeat bottom, linear-gradient(to bottom, var(--md-primary-fg-color), #7aa084 99%, var(--md-default-bg-color) 99%);
+    padding-top: 1rem
+  }
+
+  [data-md-color-scheme=slate] .mdx-container.wave {
+    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 258'><path d='M0,64L40,96C80,128,160,192,240,192C320,192,400,128,480,138.7C560,149,640,235,720,240C800,245,880,171,960,154.7C1040,139,1120,181,1200,192C1280,203,1360,181,1400,170.7L1440,160L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z' style='fill: hsla(232, 15%, 21%, 1)'/></svg>") no-repeat bottom,
+      linear-gradient(to bottom, var(--md-primary-fg-color), #005217 99%, var(--md-default-bg-color) 99%)
+  }
+
+  .mdx-hero {
+    color: var(--md-primary-bg-color);
+    margin: 0 .8rem
+  }
+
+  .mdx-hero h1 {
+    color: currentColor;
+    font-weight: 700;
+    margin-bottom: 1rem
+  }
+
+  @media screen and (max-width: 29.9375em) {
+    .mdx-hero h1 {
+      font-size: 1.4rem
+    }
+  }
+
+  .mdx-hero__content {
+    padding-bottom: 6rem
+  }
+
+  @media screen and (min-width: 60em) {
+    .mdx-hero {
+      align-items: stretch;
+      display: flex
+    }
+
+    .mdx-hero__content {
+      margin-top: 3.5rem;
+      max-width: 19rem;
+      padding-bottom: 14vw
+    }
+
+    .mdx-hero__image {
+      order: 1;
+      transform: translateX(4rem);
+      width: 38rem
+    }
+  }
+
+  @media screen and (min-width: 76.25em) {
+    .mdx-hero__image {
+      transform: translateX(8rem)
+    }
+  }
+
+  .mdx-hero .md-button {
+    color: var(--md-primary-bg-color);
+    margin-right: .5rem;
+    margin-top: .5rem
+  }
+
+  .mdx-hero .md-button:focus,
+  .mdx-hero .md-button:hover {
+    background-color: var(--md-accent-fg-color);
+    border-color: var(--md-accent-fg-color);
+    color: var(--md-accent-bg-color)
+  }
+
+  .mdx-hero .md-button--primary {
+    background-color: var(--md-primary-bg-color);
+    border-color: var(--md-primary-bg-color);
+    color: var(--md-primary-fg-color)
+  }
+
+/*#region Vídeo do youtube */
+.video-container-outer {
+  margin: 10px;
+}
+.video-container-inner {
+  max-width:740px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.video-container {
+	position:relative;
+	padding-bottom:56.25%;
+	padding-top:30px;
+	height:0;
+	overflow:hidden;
+}
+
+.video-container iframe, .video-container object, .video-container embed {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+}
+/*#endregion*/
+</style>
+
+<!-- Hero for landing page -->
+<section class="mdx-container wave">
+  <div class="md-grid md-typeset">
+    <div class="mdx-hero">
+
+      <!-- Hero image -->
+      <div class="mdx-hero__image">
+        <img class="ignore-zoom" src="assets/images/illustration.png" alt="" width="1659" height="1200" draggable="false">
+      </div>
+
+      <!-- Hero content -->
+      <div class="mdx-hero__content">
+        <h1>Controle Sua Colheita de Café</h1> <!-- Saiba o custo de cada saca de café -->
+        <p>{{ config.site_description }}</p>
+
+        <a
+          href='https://play.google.com/store/apps/details?id=br.com.erliss.rastre_cafe'>
+          <img style="width:190px;height:56.250px;vertical-align:middle;" alt='Disponível no Google Play'
+            src='assets/images/pt-br_badge_web_generic.png' />
+        </a>
+
+        <a style="margin-left:20px;padding-left:1em;padding-right:1em;" href="{{ 'sobre/' | url }}" title="Sobre Nós"
+          class="md-button md-button--primary">
+          Quem Somos
+        </a>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="video-container-outer">
+  <div class="video-container-inner">
+    <div class="video-container">
+      <lite-youtube videoid="4bVJXAcTAT8" style="background-image: url('assets/images/landingpage_about_business.jpg');" params="cc_load_policy=0&iv_load_policy=3&modestbranding=1&rel=0&showinfo=0" playlabel="Play: Vídeo Institucional"></lite-youtube>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+<!-- Content -->
+{% block content %}{% endblock %}
+
+<!-- Application footer -->
+{% block footer %}
+{% import "partials/language.html" as lang with context %}
+
+<!-- Footer -->
+<footer class="md-footer">
+  <!-- Further information -->
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+
+      <!-- Copyright and theme information -->
+      <div class="md-footer-copyright">
+        {% if config.copyright %}
+          <div class="md-footer-copyright__highlight">
+            {{ config.copyright }}
+          </div>
+        {% endif %}
+        {{ extracopyright }}
+      </div>
+
+      <!-- Social links -->
+      {% include "partials/social.html" %}
+    </div>
+  </div>
+</footer>
+{% endblock %}

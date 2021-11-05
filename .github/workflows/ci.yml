@@ -1,0 +1,37 @@
+name: ci 
+on:
+  push:
+    branches: 
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        drawio-version: [14.6.13]
+        python-version: [3.9]
+        drawio-arch: [amd64]
+        drawio-sha256sum: [ebcbf92f592998597aff4ff7dd04a1e9b99c11f9c7f70f59ee5020d2497cf910]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.x
+      - name: Install Draw.io Desktop (Linux)
+        run: |
+            set -euo pipefail
+            drawio_deb="drawio-${{ matrix.drawio-arch }}-${{ matrix.drawio-version }}.deb"
+            drawio_url="https://github.com/jgraph/drawio-desktop/releases/download/v${{ matrix.drawio-version }}/drawio-${{ matrix.drawio-arch }}-${{ matrix.drawio-version }}.deb"
+            curl -L -o "$drawio_deb" "$drawio_url"
+            sha256sum --check <<<"${{ matrix.drawio-sha256sum }}  $drawio_deb"
+            sudo apt-get update
+            sudo apt-get install -y libappindicator3-1 libatspi2.0-0 libasound2 libgconf-2-4 libgtk-3-0 libnotify4 libnss3 libsecret-1-0 libxss1 libxtst6 libgbm-dev wget xdg-utils xvfb
+            sudo apt-get install ./"$drawio_deb"
+      - run: pip install mkdocs-drawio-exporter mkdocs-minify-plugin markdown-captions mkdocs-section-index mkdocs-awesome-pages-plugin mkdocs-extra-sass-plugin livereload
+      - run: pip install git+https://ErliSoares:${GH_TOKEN_MKDOCS_MATERIAL}@github.com/maiscafeapp/mkdocs-material.git
+        env: 
+          GH_TOKEN_MKDOCS_MATERIAL: ${{ secrets.GH_TOKEN_MKDOCS_MATERIAL }}
+      - run: echo $'#!/usr/bin/env bash\nxvfb-run -a /opt/drawio/drawio "${@}"' > /usr/local/bin/drawio && chmod +x /usr/local/bin/drawio
+      - run: mkdocs gh-deploy --force
